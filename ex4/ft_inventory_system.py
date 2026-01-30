@@ -51,7 +51,6 @@ def current_inventory(item_dict: dict, sum_dict: int) -> int:
 
 
 def stat_inventory(item_dict: dict, scarce: list) -> None:
-
     # ======================= Inventory Statistic =============================
 
     print("\n" + " Inventory Statistic ".center(79, "="))
@@ -101,6 +100,7 @@ def stat_inventory(item_dict: dict, scarce: list) -> None:
 
 
 if __name__ == "__main__":
+
     scarce = ["sword", "shield", "armor", "helmet"]
 
     n = len(sys.argv)
