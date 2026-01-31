@@ -1,4 +1,249 @@
 #! /bin/python3.10
 
+import random
+
+# =============================================================================
+# ================================= DATA ======================================
+# =============================================================================
+
+achievement_data = [
+    "TaxPayer",  # 0
+    "Pyromaniac",  # 1
+    "Tunnel Vision",  # 2
+    "Feat Fanatic",  # 3
+    "bbeaurai storm",  # 4
+    "BlackPink",  # 5
+    "Double S",  # 6
+    "Nothing personal",  # 7
+    "I'm On A Boat",  # 8
+    "END_GAME_WIN",  # 9
+]
+
+Elouann = {
+    "name": "Elouann",
+    "score": random.randint(20, 8000),
+    "achievement": [
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                    ],
+    "region": "north"
+}
+
+Hugo = {
+    "name": "Hugo",
+    "score": random.randint(20, 8000),
+    "achievement": [
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                    ],
+    "region": "east"
+}
+
+Fleur = {
+    "name": "Fleur",
+    "score": random.randint(20, 8000),
+    "achievement": [
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                    ],
+    "region": "far east"
+}
+
+Timothee = {
+    "name": "Timothee",
+    "score": random.randint(20, 8000),
+    "achievement": [
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                    ],
+    "region": "central"
+}
+
+Valerie = {
+    "name": "Valerie",
+    "score": random.randint(20, 8000),
+    "achievement": [
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                    ],
+    "region": "south"
+}
+
+NomiNoe = {
+    "name": "NomiNoe",
+    "score": random.randint(20, 8000),
+    "achievement": [
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                   achievement_data[random.randint(0, 9)],
+                    ],
+    "region": "west"
+}
+
+Players = [Elouann, Hugo, Fleur, Timothee, Valerie, NomiNoe]
+
+# =============================================================================
+# ======================= List Comprehension Examples =========================
+# =============================================================================
+
+
+def exemple_list() -> None:
+    high_score = []
+    for player in Players:
+        if player["score"] > 2000:
+            high_score.append(player["name"])
+
+    doubled_score = []
+    for player in Players:
+        doubled_score.append(player["score"] * 2)
+
+    players_active = []
+    for player in Players:
+        if len(player["achievement"]) > 3:
+            players_active.append(player["name"])
+
+    print("High scorers (>2000): ", high_score)
+    print("Scores doubled: ", doubled_score)
+    print("Active players: ", players_active)
+
+
+# =============================================================================
+# ======================= Dict Comprehension Examples =========================
+# =============================================================================
+
+
+def score_cate_int(score: int) -> int:
+    if (score < 2000):
+        return (1)
+    if (score >= 2000 and score < 5000):
+        return (2)
+    if (score >= 5000):
+        return (3)
+
+
+def score_cate_str(score: int) -> str:
+    if (score < 2000):
+        return ("low")
+    if (score >= 2000 and score < 5000):
+        return ("medium")
+    if (score >= 5000):
+        return ("high")
+
+
+def exemple_dict() -> None:
+    player_score = {}
+    for player in Players:
+        player_score[player["name"]] = player["score"]
+
+    categories_score = {}
+    for score in player_score.values():
+        categories_score[score_cate_str(score)] = score_cate_int(score)
+
+    achivement_count = {}
+    for player in Players:
+        length = len(player["achievement"])
+        if (length > 3):
+            achivement_count[player["name"]] = length
+
+    print("Player scores: " + "\n", player_score)
+    print("Score categories: " + "\n", categories_score)
+    print("Achievement counts: " + "\n", achivement_count)
+
+
+# =============================================================================
+# ======================== Set Comprehension Examples =========================
+# =============================================================================
+
+
+def exemple_set() -> int:
+    unique_player = set()
+    data = set(achievement_data)
+    for player in Players:
+        unique_player.add(player["name"])
+
+    unique_achievements = set()
+    for player in Players:
+        unique_achievements = data.intersection(player["achievement"])
+
+    region = set()
+    for player in Players:
+        region.add(player["region"])
+
+    print("Unique players: " + "\n", unique_player)
+    print("Unique achievements: " + "\n", unique_achievements)
+    print("Active regions: " + "\n", region)
+    return (len(unique_achievements))
+
+
+# =============================================================================
+# ============================ Combined Analysis ==============================
+# =============================================================================
+
+def best_player() -> int:
+    stock_best_score = 0
+    for player in Players:
+        if (stock_best_score < player["score"]):
+            stock_best_score = player["score"]
+    return (stock_best_score)
+
+
+def combined_analysis() -> None:
+    count = 0
+    for der in Players:
+        count += 1
+
+    data = set(achievement_data)
+    tt_achievements = set()
+    for player in Players:
+        tt_achievements = data.intersection(player["achievement"])
+    length = len(tt_achievements)
+
+    sum = 0
+    for player in Players:
+        sum += player["score"]
+    average = (sum / count)
+
+    print("Total players: ", count)
+    print("Total unique achievements: ", length)
+    print(f"Average score: {average:.1f}")
+    print("Top performer: ", end="")
+    best_score = best_player()
+    for p in Players:
+        if (p["score"] == best_score):
+            print(f"{p['name']} ({p['score']} points, {len(p['achievement'])}"
+                  " achievements)")
+
+
+# =============================================================================
+# =============================== TESTER ======================================
+# =============================================================================
+
+
+def ft_analytics_dashboard() -> None:
+    print("\n" + " List Comprehension Examples ".center(79, "="))
+    exemple_list()
+
+    print("\n" + " Dict Comprehension Examples ".center(79, "="))
+    exemple_dict()
+
+    print("\n" + " Set Comprehension Examples ".center(79, "="))
+    exemple_set()
+
+    print("\n" + " Combined Analysis ".center(79, "="))
+    combined_analysis()
+
+
 if __name__ == "__main__":
-    
+    print(" Game Analytics Dashboard ".center(79, "=") + "\n")
+    ft_analytics_dashboard()
