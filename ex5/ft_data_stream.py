@@ -34,7 +34,7 @@ def event_proc(number_of_event: int) -> list:
     g = level_data()
     a = achievement_data()
 
-    for i in range(1, number_of_event + 1):
+    for i in range(1, (number_of_event + 1)):
         n2 = next(n)
 
         g2 = next(g)
@@ -46,7 +46,7 @@ def event_proc(number_of_event: int) -> list:
             nb[1] += 1
         elif (a2 == "leveled up"):
             nb[2] += 1
-        if (i < number_of_event):
+        if (i <= number_of_event):
             print(f"Event {i}: Player {n2} (level {g2}) {a2}")
 
     print("..." + "\n")
@@ -106,7 +106,7 @@ if __name__ == "__main__":
     print(" Game Data Stream Processor ".center(79, "=") + "\n")
     number_of_event = 3
 
-    print("Processing 1000 game events...")
+    print(f"Processing {number_of_event} game events...")
 
     nb = event_proc(number_of_event)
 
