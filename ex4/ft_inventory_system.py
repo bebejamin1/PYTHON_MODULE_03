@@ -29,6 +29,9 @@ def test_entry(argv: list) -> dict:
     return (item_dict)
 
 
+# =============================================================================
+
+
 def inventory_sys(item_dict: dict) -> int:
     sum_dict = 0
     for v in item_dict.values():
@@ -38,6 +41,9 @@ def inventory_sys(item_dict: dict) -> int:
     return (sum_dict)
 
 
+# =============================================================================
+
+
 def current_inventory(item_dict: dict, sum_dict: int) -> int:
     for keys, values in sorted(item_dict.items(),
                                key=lambda item: item[1], reverse=True):
@@ -45,9 +51,14 @@ def current_inventory(item_dict: dict, sum_dict: int) -> int:
         print(f"units ({((values/sum_dict)*100):.1f}%)")
 
 
-def stat_inventory(item_dict: dict, scarce: list) -> None:
-    # ======================= Inventory Statistic =============================
+# =============================================================================
 
+
+def stat_inventory(item_dict: dict, scarce: list) -> None:
+
+    # =========================================================================
+    # ======================= Inventory Statistic =============================
+    # =========================================================================
     print("\n" + " Inventory Statistic ".center(79, "="))
     restock = []
     max = 0
@@ -66,7 +77,9 @@ def stat_inventory(item_dict: dict, scarce: list) -> None:
     print(f"Most abundant: {max_dict} ({max} units)")
     print(f"Least abundant: {restock[0]} ({item_dict[restock[0]]} units)")
 
+    # =========================================================================
     # ========================= Item Categories ===============================
+    # =========================================================================
 
     print("\n" + " Item Categories ".center(79, "="))
     print(f"Moderate: {moderate}")
@@ -82,7 +95,9 @@ def stat_inventory(item_dict: dict, scarce: list) -> None:
                 rare_dict[scar] = item_dict[scar]
     print("Scarce: ", rare_dict)
 
+    # =========================================================================
     # ====================== Management Suggestions ===========================
+    # =========================================================================
 
     print("\n" + " Management Suggestions ".center(79, "="))
     print("Restock needed: ", restock)

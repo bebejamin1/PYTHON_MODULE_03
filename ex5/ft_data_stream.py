@@ -4,6 +4,11 @@ import random
 import time
 
 
+# =============================================================================
+# =============================== Stream ======================================
+# =============================================================================
+
+
 def name_data():
     name = ["Elouann", "Leo", "Hugo", "NomiNoe", "Timothee", "Marie-Ève",
             "Augustine", "Fleur", "Valerie", "Benjamin", "Ronan", "Georgine",
@@ -60,19 +65,40 @@ def stream_analystics(nb: list, number_of_event: int):
     print(f"Level-up events: {nb[2]}")
 
 
+# =============================================================================
 # ============================== FIBONACCI ====================================
+# =============================================================================
+
+
+def generator_fibonacci():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
 
 
 def fibonacci(nbr: int) -> None:
     print(f"Fibonacci sequence (first {nbr}): ", end="")
-    a, b = 0, 1
-    for i in range(1, nbr + 1):
-        print(a, end=" ")
-        a, b = b, a + b
+    i = 1
+    g = generator_fibonacci()
+    while (i <= nbr):
+        g2 = next(g)
+        print(g2, end=" ")
+        i += 1
     print()
 
 
+# =============================================================================
 # ============================= PRIME NUMBER ==================================
+# =============================================================================
+
+
+def generator_fprime():
+    f = 2
+    while True:
+        if (if_fprime(f) == 1):
+            yield f
+        f += 1
 
 
 def if_fprime(nb: int) -> int:
@@ -86,13 +112,10 @@ def if_fprime(nb: int) -> int:
 
 def prime_numbers(nbr: int) -> None:
     print(f"Prime numbers (first {nbr}): ", end="")
-    i = 2
-    count = 1
-    while (count <= nbr):
-        if (if_fprime(i) == 1):
-            print(i, end=" ")
-            count += 1
-        i += 1
+    g = generator_fprime()
+    for count in range(nbr):
+        g1 = next(g)
+        print(g1, end=" ")
     print()
 
 

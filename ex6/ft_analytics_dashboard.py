@@ -2,9 +2,11 @@
 
 import random
 
+
 # =============================================================================
 # ================================= DATA ======================================
 # =============================================================================
+
 
 achievement_data = [
     "TaxPayer",  # 0
@@ -17,6 +19,7 @@ achievement_data = [
     "Nothing personal",  # 7
     "I'm On A Boat",  # 8
     "END_GAME_WIN",  # 9
+    "Unique",  # 10
 ]
 
 Elouann = {
@@ -37,8 +40,7 @@ Hugo = {
                    achievement_data[random.randint(0, 9)],
                    achievement_data[random.randint(0, 9)],
                    achievement_data[random.randint(0, 9)],
-                   achievement_data[random.randint(0, 9)],
-                   achievement_data[random.randint(0, 9)],
+                   achievement_data[10],
                     ],
     "region": "east"
 }
@@ -47,7 +49,6 @@ Fleur = {
     "name": "Fleur",
     "score": random.randint(20, 8000),
     "achievement": [
-                   achievement_data[random.randint(0, 9)],
                    achievement_data[random.randint(0, 9)],
                    achievement_data[random.randint(0, 9)],
                    achievement_data[random.randint(0, 9)],
@@ -86,12 +87,12 @@ NomiNoe = {
                    achievement_data[random.randint(0, 9)],
                    achievement_data[random.randint(0, 9)],
                    achievement_data[random.randint(0, 9)],
-                   achievement_data[random.randint(0, 9)],
                     ],
     "region": "west"
 }
 
 Players = [Elouann, Hugo, Fleur, Timothee, Valerie, NomiNoe]
+
 
 # =============================================================================
 # ======================= List Comprehension Examples =========================
@@ -99,19 +100,14 @@ Players = [Elouann, Hugo, Fleur, Timothee, Valerie, NomiNoe]
 
 
 def exemple_list() -> None:
-    high_score = []
-    for player in Players:
-        if player["score"] > 2000:
-            high_score.append(player["name"])
 
-    doubled_score = []
-    for player in Players:
-        doubled_score.append(player["score"] * 2)
+    high_score = sorted([player["name"] for player in Players
+                        if player["score"] > 2000])
 
-    players_active = []
-    for player in Players:
-        if len(player["achievement"]) > 3:
-            players_active.append(player["name"])
+    doubled_score = [player["score"] * 2 for player in Players]
+
+    players_active = [player["name"] for player in Players
+                      if len(player["achievement"]) > 3]
 
     print("High scorers (>2000): ", high_score)
     print("Scores doubled: ", doubled_score)
@@ -142,19 +138,14 @@ def score_cate_str(score: int) -> str:
 
 
 def exemple_dict() -> None:
-    player_score = {}
-    for player in Players:
-        player_score[player["name"]] = player["score"]
 
-    categories_score = {}
-    for score in player_score.values():
-        categories_score[score_cate_str(score)] = score_cate_int(score)
+    player_score = {player["name"]: player["score"] for player in Players}
 
-    achivement_count = {}
-    for player in Players:
-        length = len(player["achievement"])
-        if (length > 3):
-            achivement_count[player["name"]] = length
+    categories_score = {score_cate_str(score): score_cate_int(score)
+                        for score in player_score.values()}
+
+    achivement_count = {player["name"]: len(player["achievement"])
+                        for player in Players}
 
     print("Player scores: ", player_score)
     print("Score categories: ", categories_score)
@@ -167,28 +158,30 @@ def exemple_dict() -> None:
 
 
 def exemple_set() -> int:
-    unique_player = set()
     data = set(achievement_data)
-    for player in Players:
-        unique_player.add(player["name"])
+
+    unique_player = {player["name"] for player in Players}
 
     unique_achievements = set()
     for player in Players:
         unique_achievements = data.intersection(player["achievement"])
 
-    region = set()
-    for player in Players:
-        region.add(player["region"])
+    unique_achi = {data.intersection(player["achievement"])
+                   for player in Players}
+
+    region = {player["region"] for player in Players}
 
     print("Unique players: ", unique_player)
-    print("Unique achievements: ", unique_achievements)
+    print("Unique achievements: ", unique_achi)
+    print("Unique achievements 2: ", unique_achievements)
     print("Active regions: ", region)
-    return (len(unique_achievements))
+    return (len(unique_achi))
 
 
 # =============================================================================
 # ============================ Combined Analysis ==============================
 # =============================================================================
+
 
 def best_player() -> int:
     stock_best_score = 0
@@ -231,7 +224,7 @@ def combined_analysis() -> None:
 
 
 def ft_analytics_dashboard() -> None:
-    print("\n" + " List Comprehension Examples ".center(79, "="))
+    print(" List Comprehension Examples ".center(79, "="))
     exemple_list()
 
     print("\n" + " Dict Comprehension Examples ".center(79, "="))
@@ -245,5 +238,6 @@ def ft_analytics_dashboard() -> None:
 
 
 if __name__ == "__main__":
-    print(" Game Analytics Dashboard ".center(79, "=") + "\n")
+    print(" Game Analytics Dashboard ".center(79, "="))
+    print("".center(79, "="))
     ft_analytics_dashboard()
