@@ -46,15 +46,15 @@ def event_proc(number_of_event: int) -> list:
             nb[1] += 1
         elif (a2 == "leveled up"):
             nb[2] += 1
-        if (i <= number_of_event):
+        if (i <= 3):
             print(f"Event {i}: Player {n2} (level {g2}) {a2}")
 
     print("..." + "\n")
     return (nb)
 
 
-def stream_analystics(nb: list):
-    print("Total events processed: 1000")
+def stream_analystics(nb: list, number_of_event: int):
+    print(f"Total events processed: {number_of_event}")
     print(f"High-level players (10+): {nb[0]}")
     print(f"Treasure events: {nb[1]}")
     print(f"Level-up events: {nb[2]}")
@@ -104,14 +104,14 @@ def prime_numbers(nbr: int) -> None:
 if __name__ == "__main__":
     s = time.process_time()
     print(" Game Data Stream Processor ".center(79, "=") + "\n")
-    number_of_event = 3
+    number_of_event = 1000
 
     print(f"Processing {number_of_event} game events...")
 
     nb = event_proc(number_of_event)
 
     print(" Stream Analytics ".center(79, "="))
-    stream_analystics(nb)
+    stream_analystics(nb, number_of_event)
 
     print("\n" + "Memory usage: Constant (streaming)")
     e = time.process_time()

@@ -10,7 +10,7 @@ def score_analyse() -> None:
     try:
         if (n == 1):
             raise ValueError("No scores provided. Usage: python3 "
-                             "ft_score_analytics.py<score1> <score2> ...")
+                             "ft_score_analytics.py <score1> <score2> ...")
     except ValueError as e:
         print(e)
     else:
@@ -26,13 +26,13 @@ def score_analyse() -> None:
                 print(e)
             else:
                 arguments.append(element)
-        print(f"Scores processed: {arguments}")
-        print(f"Total players: {len(arguments)}")
-        print(f"Total score: {sum(arguments)}")
-        print(f"Average score: {sum(arguments) / len(arguments):.2f}")
-        print(f"High score: {max(arguments)}")
-        print(f"Low score: {min(arguments)}")
-        print(f"Score range: {max(arguments) - min(arguments)}" + "\n")
+        print("\n" + f"💬 Scores processed: {arguments}")
+        print(f"🧒​ Total players: {len(arguments)}")
+        print(f"📥​ Total score: {sum(arguments)}")
+        print(f"📊​ Average score: {sum(arguments) / len(arguments):.2f}")
+        print(f"📈​ High score: {max(arguments)}")
+        print(f"📉​ Low score: {min(arguments)}")
+        print(f"🔛 Score range: {max(arguments) - min(arguments)}" + "\n")
 
 
 if __name__ == "__main__":

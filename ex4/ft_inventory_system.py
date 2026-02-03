@@ -2,14 +2,10 @@
 
 import sys
 
-# dict(keyword arguments,) Create a dictionary containing personal information
-# keys() method returns a view object of the dictionary
-# values() method returns object contains the values of the dictionary
-# items() method returns the keys() and values() at the same time
-# get("") method returns the value of the item with the specified key
-# old.update(new) add new at the old dictionary without double
 
+# =============================================================================
 # ================================ test =======================================
+# =============================================================================
 
 
 def test_entry(argv: list) -> dict:
@@ -30,7 +26,6 @@ def test_entry(argv: list) -> dict:
         except ValueError:
             print(f"❌​ Quantity not in the correct data type '{item[1]}', "
                   "try with an int positiv")
-    print(item_dict)
     return (item_dict)
 
 
@@ -61,6 +56,7 @@ def stat_inventory(item_dict: dict, scarce: list) -> None:
         if (values > max):
             max = values
             max_dict = keys
+            moderate = {keys: values}
         if (values < min):
             min = values
             restock == (keys)
@@ -68,23 +64,22 @@ def stat_inventory(item_dict: dict, scarce: list) -> None:
             restock.append(keys)
 
     print(f"Most abundant: {max_dict} ({max} units)")
-    print(f"Least abundant: {keys} ({values} units)")
+    print(f"Least abundant: {restock[0]} ({item_dict[restock[0]]} units)")
 
     # ========================= Item Categories ===============================
 
     print("\n" + " Item Categories ".center(79, "="))
-    print(f"Moderate: {max_dict} ({max} units)")
+    print(f"Moderate: {moderate}")
+
     rare_dict = {}
-    print(item_dict)
     for rare in item_dict.items():
         rare = str(rare)
         rare = rare.split(", ")
         rare[1] = rare[1].replace(")", "")
         rare[1] = int(rare[1])
         for scar in scarce:
-            if (scar in item_dict):
-                temp_dict = {scar: rare[1]}
-                rare_dict.update(temp_dict)
+            if (item_dict.get(scar, 0) != 0):
+                rare_dict[scar] = item_dict[scar]
     print("Scarce: ", rare_dict)
 
     # ====================== Management Suggestions ===========================

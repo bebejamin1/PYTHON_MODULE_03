@@ -156,9 +156,9 @@ def exemple_dict() -> None:
         if (length > 3):
             achivement_count[player["name"]] = length
 
-    print("Player scores: " + "\n", player_score)
-    print("Score categories: " + "\n", categories_score)
-    print("Achievement counts: " + "\n", achivement_count)
+    print("Player scores: ", player_score)
+    print("Score categories: ", categories_score)
+    print("Achievement counts: ", achivement_count)
 
 
 # =============================================================================
@@ -180,9 +180,9 @@ def exemple_set() -> int:
     for player in Players:
         region.add(player["region"])
 
-    print("Unique players: " + "\n", unique_player)
-    print("Unique achievements: " + "\n", unique_achievements)
-    print("Active regions: " + "\n", region)
+    print("Unique players: ", unique_player)
+    print("Unique achievements: ", unique_achievements)
+    print("Active regions: ", region)
     return (len(unique_achievements))
 
 

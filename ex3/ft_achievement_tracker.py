@@ -15,30 +15,28 @@ if __name__ == "__main__":
             "The Discount Hunter", "Socks & Sandals", "aged"
             }
 
-# alain = {
-#         'first_kill', 'level_10', 'treasure_hunter', 'speed_demon'
-#         }
-
-# bernard = {
-#         'first_kill', 'level_10', 'boss_slayer', 'collector'
-#           }
-
-# clotilde = {
-#         'level_10', 'treasure_hunter', 'boss_slayer', 'speed_demon',
-#         'perfectionist'
-#            }
+    # alain = {
+    #     'first_kill', 'level_10', 'treasure_hunter', 'speed_demon'
+    #         }
+    # bernard = {
+    #     'first_kill', 'level_10', 'boss_slayer', 'collector'
+    #             }
+    # clotilde = {
+    #     'level_10', 'treasure_hunter', 'boss_slayer', 'speed_demon',
+    #     'perfectionist'
+    #             }
 
     print(" Achievement Tracker System ".center(40, "=") + "\n")
 
     print(f"Player Alain acheviements: {alain}")
-    print(f"Player Bernard acheviements: {bernard}")
-    print(f"Player Clotilde acheviements: {clotilde}")
+    print("\n" + f"Player Bernard acheviements: {bernard}")
+    print("\n" + f"Player Clotilde acheviements: {clotilde}")
 
     print("\n" + " Achievement Analytics ".center(40, "="))
 
     unique = alain.union(bernard)
     unique = unique.union(clotilde)
-    print("All unique achievements: ", unique)
+    print("All unique achievements:", unique)
     print("Total unique achievements: ", len(unique))
 
     common = alain.intersection(bernard)
