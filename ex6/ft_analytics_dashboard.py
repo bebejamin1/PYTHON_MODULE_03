@@ -109,9 +109,12 @@ def exemple_list() -> None:
     players_active = [player["name"] for player in Players
                       if len(player["achievement"]) > 3]
 
-    print("High scorers (>2000): ", high_score)
-    print("Scores doubled: ", doubled_score)
-    print("Active players: ", players_active)
+    print("High scorers (>2000): ", end="")
+    print(*high_score, sep=" | ")
+    print("Scores doubled: ", end="")
+    print(*doubled_score, sep=" | ")
+    print("Active players: ", end="")
+    print(*players_active, sep=" | ")
 
 
 # =============================================================================
@@ -147,9 +150,12 @@ def exemple_dict() -> None:
     achivement_count = {player["name"]: len(player["achievement"])
                         for player in Players}
 
-    print("Player scores: ", player_score)
-    print("Score categories: ", categories_score)
-    print("Achievement counts: ", achivement_count)
+    print("Player scores: ", end="")
+    print(*player_score, sep=" | ")
+    print("Score categories: ", end="")
+    print(*categories_score, sep=" | ")
+    print("Achievement counts: ", end="")
+    print(*achivement_count, sep=" | ")
 
 
 # =============================================================================
@@ -158,24 +164,20 @@ def exemple_dict() -> None:
 
 
 def exemple_set() -> int:
-    data = set(achievement_data)
 
     unique_player = {player["name"] for player in Players}
 
-    unique_achievements = set()
-    for player in Players:
-        unique_achievements = data.intersection(player["achievement"])
-
-    unique_achi = {data.intersection(player["achievement"])
-                   for player in Players}
+    unique_achi = {achievement for player in Players
+                   for achievement in player["achievement"]}
 
     region = {player["region"] for player in Players}
 
-    print("Unique players: ", unique_player)
-    print("Unique achievements: ", unique_achi)
-    print("Unique achievements 2: ", unique_achievements)
-    print("Active regions: ", region)
-    return (len(unique_achi))
+    print("Unique players: ", end="")
+    print(*unique_player, sep=" | ")
+    print("Unique achievements: ", end="")
+    print(*unique_achi, sep=" | ")
+    print("Active regions: ", end="")
+    print(*region, sep=" | ")
 
 
 # =============================================================================
@@ -183,39 +185,24 @@ def exemple_set() -> int:
 # =============================================================================
 
 
-def best_player() -> int:
-    stock_best_score = 0
-    for player in Players:
-        if (stock_best_score < player["score"]):
-            stock_best_score = player["score"]
-    return (stock_best_score)
-
-
 def combined_analysis() -> None:
-    count = 0
-    for der in Players:
-        count += 1
 
-    data = set(achievement_data)
-    tt_achievements = set()
-    for player in Players:
-        tt_achievements = data.intersection(player["achievement"])
-    length = len(tt_achievements)
+    total_player = [player["name"] for player in Players]
 
-    sum = 0
-    for player in Players:
-        sum += player["score"]
-    average = (sum / count)
+    score_list = [player["score"] for player in Players]
 
-    print("Total players: ", count)
+    length = len({achievement for player in Players for achievement
+                  in player["achievement"]})
+
+    best_p = [dict(player) for player in Players
+              if player["score"] == max(score_list)]
+
+    print("Total players: ", len(total_player))
     print("Total unique achievements: ", length)
-    print(f"Average score: {average:.1f}")
+    print(f"Average score: {(sum(score_list) / len(score_list)):.1f}")
     print("Top performer: ", end="")
-    best_score = best_player()
-    for p in Players:
-        if (p["score"] == best_score):
-            print(f"{p['name']} ({p['score']} points, {len(p['achievement'])}"
-                  " achievements)")
+    print(f"{best_p[0]['name']} ({best_p[0]['score']} points, "
+          f"{len(best_p[0]['achievement'])} achievements)")
 
 
 # =============================================================================
