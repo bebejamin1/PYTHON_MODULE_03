@@ -2,14 +2,14 @@
 
 import random
 import time
-
+from typing import Generator
 
 # =============================================================================
 # =============================== Stream ======================================
 # =============================================================================
 
 
-def name_data():
+def name_data() -> Generator:
     name = ["Elouann", "Leo", "Hugo", "NomiNoe", "Timothee", "Marie-Ève",
             "Augustine", "Fleur", "Valerie", "Benjamin", "Ronan", "Georgine",
             "Marceau", "Lya", "Flavie", "Eulalie", "Maxime", "Cédric",
@@ -18,13 +18,13 @@ def name_data():
         yield random.choice(name)
 
 
-def level_data():
+def level_data() -> Generator:
     while True:
         x = random.randint(1, 8000)
         yield x
 
 
-def achievement_data():
+def achievement_data() -> Generator:
     achievement = ["Don't Need to Stop", "In One Go!", "Like a Record Baby",
                    "Recharging...", "Well Done", "I'm a Bomb!",
                    "Beyond the Darkness", "Freeplay Freeway",
@@ -58,7 +58,7 @@ def event_proc(number_of_event: int) -> list:
     return (nb)
 
 
-def stream_analystics(nb: list, number_of_event: int):
+def stream_analystics(nb: list, number_of_event: int) -> None:
     print(f"Total events processed: {number_of_event}")
     print(f"High-level players (10+): {nb[0]}")
     print(f"Treasure events: {nb[1]}")
@@ -70,7 +70,7 @@ def stream_analystics(nb: list, number_of_event: int):
 # =============================================================================
 
 
-def generator_fibonacci():
+def generator_fibonacci() -> Generator:
     a, b = 0, 1
     while True:
         yield a
@@ -93,7 +93,7 @@ def fibonacci(nbr: int) -> None:
 # =============================================================================
 
 
-def generator_fprime():
+def generator_fprime() -> Generator:
     f = 2
     while True:
         if (if_fprime(f) == 1):

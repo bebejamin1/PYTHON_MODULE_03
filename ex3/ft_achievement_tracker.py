@@ -15,16 +15,16 @@ if __name__ == "__main__":
             "The Discount Hunter", "Socks & Sandals", "aged"
             }
 
-    # alain = {
-    #     'first_kill', 'level_10', 'treasure_hunter', 'speed_demon'
-    #         }
-    # bernard = {
-    #     'first_kill', 'level_10', 'boss_slayer', 'collector'
-    #             }
-    # clotilde = {
-    #     'level_10', 'treasure_hunter', 'boss_slayer', 'speed_demon',
-    #     'perfectionist'
-    #             }
+#     alain = {
+#         'first_kill', 'level_10', 'treasure_hunter', 'speed_demon'
+#             }
+#     bernard = {
+#         'first_kill', 'level_10', 'boss_slayer', 'collector'
+#                 }
+#     clotilde = {
+#         'level_10', 'treasure_hunter', 'boss_slayer', 'speed_demon',
+#         'perfectionist'
+#                 }
 
     print(" Achievement Tracker System ".center(40, "=") + "\n")
 

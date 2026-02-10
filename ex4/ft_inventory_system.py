@@ -18,8 +18,6 @@ def test_entry(argv: list) -> dict:
             item[1] = int(item[1])
             if (item[1] <= 0):
                 raise ValueError()
-            # temp_dict = {item[0]: item[1]}
-            # item_dict.update(temp_dict)
             item_dict[item[0]] = item[1]
         except AttributeError as e:
             print(e)
